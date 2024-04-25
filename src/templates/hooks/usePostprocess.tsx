@@ -16,6 +16,7 @@ function getFullscreenTriangle() {
 // Basic shader postprocess based on the template https://gist.github.com/RenaudRohlinger/bd5d15316a04d04380e93f10401c40e7
 // USAGE: Simply call usePostprocess hook in your r3f component to apply the shader to the canvas as a postprocess effect
 const usePostProcess = () => {
+  // @ts-expect-error
   const [{ dpr }, size, gl] = useThree((s) => [s.viewport, s.size, s.gl])
 
   const [screenCamera, screenScene, screen, renderTarget] = useMemo(() => {
@@ -25,7 +26,9 @@ const usePostProcess = () => {
     screen.frustumCulled = false
     screenScene.add(screen)
 
+    // @ts-expect-error
     const renderTarget = new THREE.WebGLRenderTarget(512, 512, { samples: 4, encoding: gl.encoding })
+    // @ts-expect-error
     renderTarget.depthTexture = new THREE.DepthTexture() // fix depth issues
 
     // use ShaderMaterial for linearToOutputTexel
@@ -75,11 +78,14 @@ const usePostProcess = () => {
       `,
       glslVersion: THREE.GLSL3,
     })
+    // @ts-expect-error
     screen.material.uniforms.diffuse.value = renderTarget.texture
 
     return [screenCamera, screenScene, screen, renderTarget]
+    // @ts-expect-error
   }, [gl.encoding])
   useEffect(() => {
+    // @ts-expect-error
     const { width, height } = size
     const { w, h } = {
       w: width * dpr,
@@ -93,6 +99,7 @@ const usePostProcess = () => {
     gl.render(scene, camera)
 
     gl.setRenderTarget(null)
+    // @ts-expect-error
     if (screen) screen.material.uniforms.time.value += delta
 
     gl.render(screenScene, screenCamera)
