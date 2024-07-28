@@ -23,7 +23,7 @@ export default function Demo({}) {
           </mesh>
         </group>
       </Suspense>
-      <Common />
+      <Common position={[0, 0.5, 5]} />
     </View>
   )
 }

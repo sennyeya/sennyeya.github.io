@@ -32,14 +32,11 @@ export default function Demo({}) {
                 },
               ]}
             ></extrudeGeometry>
-          </mesh>
-          <mesh>
-            <torusGeometry args={[8, 7.5, 16, 100]}></torusGeometry>
-            <meshPhongMaterial side={THREE.DoubleSide} color={'#808080'}></meshPhongMaterial>
+            <meshPhongMaterial side={THREE.DoubleSide} color={0x808080} />
           </mesh>
         </group>
       </Suspense>
-      <Common />
+      <Common position={[0, 2, 7]} />
     </View>
   )
 }

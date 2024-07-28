@@ -1,8 +1,8 @@
 'use client'
 
-import { Suspense } from 'react'
+import { DoubleSide } from 'three'
 import { View, Common } from '../helpers'
-import * as THREE from 'three'
+import { Suspense } from 'react'
 
 export default function Demo({}) {
   return (
@@ -10,12 +10,12 @@ export default function Demo({}) {
       <Suspense>
         <group>
           <mesh>
-            <tetrahedronGeometry args={[2, 0]}></tetrahedronGeometry>
-            <meshPhongMaterial side={THREE.DoubleSide} color={'#696969'}></meshPhongMaterial>
+            <dodecahedronGeometry args={[2, 0]}></dodecahedronGeometry>
+            <meshPhongMaterial color={'#f0f0f0'} side={DoubleSide}></meshPhongMaterial>
           </mesh>
         </group>
       </Suspense>
-      <Common />
+      <Common position={[0, 3, 10]} />
     </View>
   )
 }
