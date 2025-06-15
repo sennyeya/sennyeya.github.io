@@ -9,6 +9,7 @@
   "engines": {
     "node": ">=14"
   },
+  "packageManager": "pnpm@10.12.1",
   "scripts": {
     "lint": "next lint --fix --dir app",
     "dev": "next dev",
